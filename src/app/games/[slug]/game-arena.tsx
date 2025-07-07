@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
-import ShareScoreDialog from '@/components/share-score-dialog';
 
 interface GameArenaProps {
   game: Game;
@@ -59,12 +58,11 @@ export default function GameArena({ game }: GameArenaProps) {
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <Button size="lg" variant="outline" onClick={handleReplay}>
               <RefreshCw className="mr-2 h-5 w-5" />
               Replay
             </Button>
-            {isClient && <ShareScoreDialog gameName={game.name} score={score} />}
           </div>
         </div>
       </div>

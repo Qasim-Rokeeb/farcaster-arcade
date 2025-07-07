@@ -1,6 +1,8 @@
+'use client';
+
 import { Gamepad2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import ConnectWalletButton from './connect-wallet-button';
 
 export default function Header() {
   return (
@@ -13,9 +15,7 @@ export default function Header() {
               Warpcast Arcade
             </span>
           </Link>
-          <Button>
-            Login with Farcaster
-          </Button>
+          <ConnectWalletButton />
         </div>
       </div>
     </header>
