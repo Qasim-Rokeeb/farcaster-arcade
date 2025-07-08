@@ -40,15 +40,15 @@ cd farcaster-minigames
 ### Step 2: Set Up Environment Variables
 This project requires API keys for wallet connections.
 
-1.  **Copy the example file:**
+1.  **Create a `.env.local` file** by copying the example file:
     ```bash
-    cp .env.example .env
+    cp .env.example .env.local
     ```
 2.  **Get API Keys:**
-    *   **Alchemy API Key:** Go to [Alchemy](https://www.alchemy.com/), create an account, and get a free API key for the **Sepolia** network.
-    *   **WalletConnect Project ID:** Go to [WalletConnect Cloud](https://cloud.walletconnect.com/), sign in, and create a new project to get your Project ID.
-3.  **Fill in your `.env` file:**
-    Open the `.env` file and replace the placeholder values with your actual keys.
+    *   **Alchemy API Key:** Go to [Alchemy](https://www.alchemy.com/), create a free account, make a new App for the **Sepolia** network, and get your API key.
+    *   **WalletConnect Project ID:** Go to [WalletConnect Cloud](https://cloud.walletconnect.com/), create a new project, and copy your Project ID.
+3.  **Fill in your `.env.local` file:**
+    Open the `.env.local` file and replace the placeholder values with your actual keys. The `NEXT_PUBLIC_` prefix is required by Next.js to expose these variables to the browser.
 
 ### Step 3: Configure Your Payment Address
 To receive payments for premium games, you must set your own wallet address.
