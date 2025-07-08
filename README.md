@@ -1,29 +1,16 @@
+# 🎮 Warpcast Arcade
 
-# 🎮 Farcaster MiniGames Hub
-
-Farcaster MiniGames Hub is a lightweight, Warpcast-native MiniApp that brings classic casual games like Tetris, Sokoban, and Mini Car Racing directly into the Farcaster social experience. Users can play, share, and compete — all without leaving the app.
+Warpcast Arcade is a lightweight, web-native app that brings classic casual games like Tetris, Sokoban, and Mini Car Racing directly to your browser. Users can play, share, and compete — all without leaving the app.
 
 ---
-
-
 
 ## 🎯 Features
 
-- 🎮 **Classic Games Collection**: Tetris, Sokoban, Mini Car Game, and more.
-- 🧠 **Instant Play**: Launch games instantly within Warpcast using Farcaster Frames.
-- 🏆 **Social Leaderboards**: Compete with other users and share scores as casts.
-- 🔗 **Seamless Farcaster Integration**: Login with your Farcaster ID.
-- 📲 **One-Click Game Sharing**: Let your friends join via shareable links.
-
----
-
-## 🧭 User Flow
-
-1. **Discover Game Frame** – via cast or feed
-2. **Choose Game** – select from the MiniGames dashboard
-3. **Play Game** – no install or sign-in required
-4. **Score Summary** – see your results and optionally share them
-5. **Cast Challenge** – invite others to beat your score
+- 🎮 **Classic Games Collection**: A curated selection of timeless arcade and puzzle games.
+- 💰 **Play-to-Unlock**: Access premium games by making a small one-time payment with your crypto wallet.
+- 🔗 **Web3 Wallet Integration**: Uses ConnectKit and Wagmi for a seamless wallet connection experience.
+- 🎨 **Retro-Futuristic UI**: A sleek dark mode interface built with Tailwind CSS and ShadCN UI.
+- 🚀 **Serverless Architecture**: All game and payment logic runs directly in the browser, interacting with the Ethereum blockchain.
 
 ---
 
@@ -31,68 +18,70 @@ Farcaster MiniGames Hub is a lightweight, Warpcast-native MiniApp that brings cl
 
 | Layer         | Stack                                         |
 |---------------|-----------------------------------------------|
-| Frontend      | React, Tailwind CSS                           |
-| Games Engine  | JavaScript (Canvas / HTML5)                   |
-| MiniApp Logic | Farcaster Frame SDK, Neynar API (optional)    |
-| Auth          | Privy or Warpcast Sign-In                     |
-| Hosting       | Vercel                                        |
+| Frontend      | Next.js, React, TypeScript, Tailwind CSS, ShadCN UI |
+| Web3 Logic    | Wagmi, Viem, ConnectKit                       |
+| Payments      | Direct ERC20 token transfers on-chain         |
+| Hosting       | Vercel, Firebase App Hosting, or similar      |
 
 ---
 
+## 🧪 Installation & Local Development Guide
 
-## 🧪 Installation & Development
+Follow these steps to get the project running on your local machine.
+
+### Step 1: Clone the Repository
+First, clone this repository to your local machine using git.
 
 ```bash
-# Clone the repo
 git clone https://github.com/your-username/farcaster-minigames.git
-
-# Navigate into the project
 cd farcaster-minigames
+```
 
-# Install dependencies
+### Step 2: Set Up Environment Variables
+This project requires API keys for wallet connections.
+
+1.  **Copy the example file:**
+    ```bash
+    cp .env.example .env
+    ```
+2.  **Get API Keys:**
+    *   **Alchemy API Key:** Go to [Alchemy](https://www.alchemy.com/), create an account, and get a free API key for the **Sepolia** network.
+    *   **WalletConnect Project ID:** Go to [WalletConnect Cloud](https://cloud.walletconnect.com/), sign in, and create a new project to get your Project ID.
+3.  **Fill in your `.env` file:**
+    Open the `.env` file and replace the placeholder values with your actual keys.
+
+### Step 3: Configure Your Payment Address
+To receive payments for premium games, you must set your own wallet address.
+
+-   Open the file: `src/components/pay-to-play-dialog.tsx`
+-   Find the `PAYMENT_RECIPIENT_ADDRESS` constant.
+-   Replace the placeholder address (`0x000...`) with your public Ethereum wallet address.
+
+### Step 4: Install Dependencies
+Install all the necessary packages using npm.
+
+```bash
 npm install
+```
 
-# Run locally
+### Step 5: Run the Development Server
+Now, you can start the local development server.
+
+```bash
 npm run dev
-````
+```
+
+### Step 6: Open the App
+Open your browser and navigate to [http://localhost:9002](http://localhost:9002). You should now see the Warpcast Arcade homepage!
 
 ---
 
 ## 📦 Deployment
 
-Deploy to [Vercel](https://vercel.com/) for optimal Farcaster Frame support.
-
-```bash
-# Push to GitHub
-git add .
-git commit -m "initial commit"
-git push origin main
-
-# Connect the repo to Vercel and deploy
-```
-
----
-
-## 🧩 What's Next?
-
-* Add more games (Flappy Bird, Snake, Breakout)
-* Create user profile pages with performance stats
-* Implement on-chain rewards (Base NFTs for achievements)
-* Build a level editor for Sokoban-style games
-
----
-
-## 🙋‍♂️ About Me
-
-Built with 💙 by [Qasim Rokeeb](https://github.com/Qasim-Rokeeb)
-Follow my journey on [Twitter](https://x.com/qasimrokeeb)
+Deploy to [Vercel](https://vercel.com/) or [Firebase App Hosting](https://firebase.google.com/docs/app-hosting) for the best performance and easy setup. Ensure you set your environment variables in your hosting provider's settings.
 
 ---
 
 ## 📄 License
 
 MIT License
-
-```
-
-
