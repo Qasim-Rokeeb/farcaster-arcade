@@ -1,11 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { Game } from '@/lib/games';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
+
+// Dynamically import game components
+import SnakeGame from '@/components/games/snake-game';
+import MemoryMatchGame from '@/components/games/memory-match-game';
+import BrickBreakerGame from '@/components/games/brick-breaker-game';
+import PlaceholderGame from '@/components/games/placeholder-game';
+
 
 interface GameArenaProps {
   game: Game;
@@ -14,20 +21,34 @@ interface GameArenaProps {
 export default function GameArena({ game }: GameArenaProps) {
   const [score, setScore] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const [gameKey, setGameKey] = useState(Date.now()); // Used to force re-render on replay
 
   useEffect(() => {
     setIsClient(true);
-    // Simulate score increase
-    const interval = setInterval(() => {
-      setScore((s) => s + Math.floor(Math.random() * 100));
-    }, 2000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const handleReplay = () => {
     setScore(0);
+    setGameKey(Date.now()); // Change key to remount the game component
   };
+
+  const GameComponent = useMemo(() => {
+    switch (game.id) {
+      case 'snake':
+        return SnakeGame;
+      case 'memory-match':
+        return MemoryMatchGame;
+      case 'brick-breaker':
+        return BrickBreakerGame;
+      case 'clicker-hero':
+      case '2048':
+      case 'word-find':
+        return () => <PlaceholderGame gameName={game.name} />;
+      default:
+        return () => <PlaceholderGame gameName="Unknown Game" />;
+    }
+  }, [game.id, game.name]);
+
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -43,8 +64,8 @@ export default function GameArena({ game }: GameArenaProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <h1 className="text-3xl font-bold mb-4 font-headline">{game.name}</h1>
-          <div className="aspect-video bg-muted/50 border rounded-lg flex items-center justify-center text-muted-foreground">
-            <p>Game Area Placeholder</p>
+          <div className="aspect-video bg-muted/20 border rounded-lg flex items-center justify-center text-muted-foreground relative overflow-hidden">
+            {isClient ? <GameComponent key={gameKey} setScore={setScore} /> : <p>Loading game...</p>}
           </div>
         </div>
 
