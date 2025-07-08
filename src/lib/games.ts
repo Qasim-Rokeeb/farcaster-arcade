@@ -8,6 +8,15 @@ export interface Game {
 }
 
 export const games: Game[] = [
+  // Free and Popular Games
+  {
+    id: 'brick-breaker',
+    name: 'Brick Breaker',
+    description: 'Break all the bricks with the ball. A timeless arcade classic.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'brick breaker game',
+    isPremium: false,
+  },
   {
     id: 'snake',
     name: 'Snake',
@@ -24,13 +33,22 @@ export const games: Game[] = [
     dataAiHint: 'memory cards',
     isPremium: false,
   },
+  // Premium Games
   {
-    id: 'brick-breaker',
-    name: 'Brick Breaker',
-    description: 'Break all the bricks with the ball. A timeless arcade classic.',
+    id: 'tetris',
+    name: 'Tetris',
+    description: 'Fit the falling blocks together to clear lines and score points.',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'brick breaker game',
-    isPremium: false,
+    dataAiHint: 'tetris blocks',
+    isPremium: true,
+  },
+  {
+    id: 'sokoban',
+    name: 'Sokoban',
+    description: 'Push boxes to their storage locations. A classic logic puzzle.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'puzzle boxes',
+    isPremium: true,
   },
   {
     id: '2048',
