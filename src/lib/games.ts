@@ -11,11 +11,11 @@ export interface Game {
 export const games: Game[] = [
   // Free and Popular Games
   {
-    id: 'snake',
-    name: 'Snake',
-    description: "Guide the snake to eat the food, but don't hit the walls or yourself!",
-    imageUrl: '/assets/images/snake.png',
-    dataAiHint: 'cartoon snake',
+    id: 'clicker-hero',
+    name: 'Clicker Hero',
+    description: 'Click the targets as fast as you can before the time runs out!',
+    imageUrl: '/assets/images/clicker-hero.png',
+    dataAiHint: 'bullseye target',
     isPremium: false,
   },
   {
@@ -97,14 +97,6 @@ export const games: Game[] = [
     description: 'A puzzle where toggling a light also toggles its neighbors.',
     imageUrl: '/assets/images/lights-out.png',
     dataAiHint: 'light grid',
-    isPremium: true,
-  },
-  {
-    id: 'clicker-hero',
-    name: 'Clicker Hero',
-    description: 'Click the targets as fast as you can before the time runs out!',
-    imageUrl: '/assets/images/clicker-hero.png',
-    dataAiHint: 'bullseye target',
     isPremium: true,
   },
 ];

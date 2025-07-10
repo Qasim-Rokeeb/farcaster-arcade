@@ -9,11 +9,11 @@ import { ArrowLeft, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 // Dynamically import game components
-import SnakeGame from '@/components/games/snake-game';
 import MemoryMatchGame from '@/components/games/memory-match-game';
 import WhackAMoleGame from '@/components/games/whack-a-mole-game';
 import TetrisGame from '@/components/games/tetris-game';
 import PlaceholderGame from '@/components/games/placeholder-game';
+import ClickerHeroGame from '@/components/games/clicker-hero-game';
 
 
 interface GameArenaProps {
@@ -31,15 +31,14 @@ export default function GameArena({ game }: GameArenaProps) {
 
   const GameComponent = useMemo(() => {
     switch (game.id) {
-      case 'snake':
-        return SnakeGame;
+      case 'clicker-hero':
+        return ClickerHeroGame;
       case 'memory-match':
         return MemoryMatchGame;
       case 'whack-a-mole':
         return WhackAMoleGame;
       case 'tetris':
         return TetrisGame;
-      case 'clicker-hero':
       case '2048':
       case 'word-find':
       case 'sokoban':
