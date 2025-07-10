@@ -8,8 +8,7 @@ interface GamePageProps {
   };
 }
 
-export default async function GamePage({ params }: GamePageProps) {
-  const { slug } = params;
+export default async function GamePage({ params: { slug } }: GamePageProps) {
   const game = getGameBySlug(slug);
 
   if (!game) {
