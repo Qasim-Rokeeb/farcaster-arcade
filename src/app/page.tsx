@@ -9,7 +9,7 @@ export default function Home() {
           Welcome to Warpcast Arcade
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          Your portal to nostalgic fun. Choose a game below and start playing instantly!
+          Your portal to nostalgic fun. Your one stop for unlimited fun. Choose a game below and start playing instantly!
         </p>
       </header>
 
