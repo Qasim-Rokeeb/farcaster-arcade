@@ -5,6 +5,13 @@ import { mainnet, sepolia } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 
+// Ensure the WalletConnect Project ID is handled correctly, preventing crashes if it's missing.
+const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
+
+if (!walletConnectProjectId) {
+  console.warn("WalletConnect Project ID is not defined. WalletConnect functionality will be disabled.");
+}
+
 const config = createConfig(
   getDefaultConfig({
     chains: [sepolia, mainnet],
@@ -16,7 +23,8 @@ const config = createConfig(
         `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
       ),
     },
-    walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
+    // Safely provide the WalletConnect Project ID.
+    walletConnectProjectId: walletConnectProjectId!,
     appName: 'Warpcast Arcade',
     appDescription: 'Your favorite retro games, onchain.',
     appUrl: 'https://warpcast-arcade.xyz',
