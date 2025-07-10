@@ -14,7 +14,7 @@ export const games: Game[] = [
     name: 'Whack-a-Mole',
     description: 'Test your reflexes! Whack the moles as they pop up.',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'whack a mole',
+    dataAiHint: 'retro arcade',
     isPremium: false,
   },
   {
@@ -22,7 +22,7 @@ export const games: Game[] = [
     name: 'Snake',
     description: "Guide the snake to eat the food, but don't hit the walls or yourself!",
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'snake game',
+    dataAiHint: 'pixelated snake',
     isPremium: false,
   },
   {
@@ -30,7 +30,7 @@ export const games: Game[] = [
     name: 'Memory Match',
     description: 'Flip the cards and find all the matching pairs. A test of your memory!',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'memory cards',
+    dataAiHint: 'playing cards',
     isPremium: false,
   },
   // Premium Games
@@ -39,7 +39,7 @@ export const games: Game[] = [
     name: 'Tetris',
     description: 'Fit the falling blocks together to clear lines and score points.',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'tetris blocks',
+    dataAiHint: 'geometric blocks',
     isPremium: true,
   },
   {
@@ -47,7 +47,7 @@ export const games: Game[] = [
     name: 'Sokoban',
     description: 'Push boxes to their storage locations. A classic logic puzzle.',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'puzzle boxes',
+    dataAiHint: 'wooden crate',
     isPremium: true,
   },
   {
@@ -55,7 +55,7 @@ export const games: Game[] = [
     name: '2048',
     description: 'Slide the tiles and combine them to reach the 2048 tile!',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'puzzle numbers',
+    dataAiHint: 'number tiles',
     isPremium: true,
   },
   {
@@ -63,7 +63,7 @@ export const games: Game[] = [
     name: 'Word Find',
     description: 'Find all the hidden words in the grid. A challenge for your vocabulary.',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'word search',
+    dataAiHint: 'letter grid',
     isPremium: true,
   },
   {
@@ -71,7 +71,7 @@ export const games: Game[] = [
     name: 'Clicker Hero',
     description: 'Click the targets as fast as you can before the time runs out!',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'target practice',
+    dataAiHint: 'bullseye target',
     isPremium: true,
   },
 ];
