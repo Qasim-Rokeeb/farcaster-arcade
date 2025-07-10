@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -77,7 +78,7 @@ export default function TetrisGame({ setScore }: GameProps) {
   const [position, setPosition] = useState({ x: 3, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [isPaused, setIsPaused] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   const [gameAreaRef, { width: gameAreaWidth, height: gameAreaHeight }] = useElementSize();
   const TILE_SIZE = Math.min(gameAreaWidth / COLS, gameAreaHeight / ROWS);
@@ -107,19 +108,11 @@ export default function TetrisGame({ setScore }: GameProps) {
     return true;
   }, []);
 
-  const resetGame = useCallback(() => {
-    setBoard(createEmptyBoard());
-    setCurrentPiece(getRandomPiece());
-    setPosition({ x: 3, y: 0 });
-    setRotation(0);
-    setScore(() => 0);
-    setGameOver(false);
-    setIsPaused(true);
-  }, [setScore]);
-
   useEffect(() => {
-    resetGame();
-  }, [resetGame]);
+    setScore(() => 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   const drop = useCallback(() => {
     if (isPaused || gameOver) return;
@@ -129,20 +122,22 @@ export default function TetrisGame({ setScore }: GameProps) {
     if (!isValidMove(pieceShape, newPosition, board)) {
       // Lock the piece
       let newBoard = board.map(row => [...row]);
+      let isGameOverCondition = false;
       pieceShape.forEach((row, y) => {
         row.forEach((value, x) => {
           if (value) {
             const boardY = position.y + y;
             const boardX = position.x + x;
-            if(boardY >= 0) {
+            if(boardY < 0) {
+              isGameOverCondition = true;
+            } else {
               newBoard[boardY][boardX] = currentPiece.color;
             }
           }
         });
       });
       
-      // Check for game over
-      if (position.y < 0) {
+      if (isGameOverCondition) {
         setGameOver(true);
         return;
       }
@@ -161,13 +156,20 @@ export default function TetrisGame({ setScore }: GameProps) {
       newBoard.unshift(...newRows);
 
       if (linesCleared > 0) {
-        setScore(s => s + linesCleared * 100);
+        const scoreMultipliers = [0, 100, 300, 500, 800];
+        setScore(s => s + scoreMultipliers[linesCleared]);
       }
       
       setBoard(newBoard);
-      setCurrentPiece(getRandomPiece());
-      setPosition({ x: 3, y: 0 });
+      const newPiece = getRandomPiece();
+      setCurrentPiece(newPiece);
+      const initialPosition = { x: Math.floor(COLS / 2 - newPiece.shape[0][0].length / 2), y: 0 };
+      setPosition(initialPosition);
       setRotation(0);
+
+      if(!isValidMove(newPiece.shape[0], initialPosition, newBoard)) {
+        setGameOver(true);
+      }
 
     } else {
       setPosition(newPosition);
@@ -199,13 +201,12 @@ export default function TetrisGame({ setScore }: GameProps) {
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     e.preventDefault();
-    if (gameOver) return;
-    if (e.key === ' ') {
+    if (e.key === ' ' || e.key === 'Spacebar') {
       setIsPaused(p => !p);
       return;
     }
-    if (isPaused) return;
-
+    if (isPaused || gameOver) return;
+    
     switch (e.key) {
       case 'ArrowLeft':
         move(-1);
@@ -257,7 +258,7 @@ export default function TetrisGame({ setScore }: GameProps) {
   return (
     <div
       ref={gameAreaRef}
-      className="w-full h-full bg-background relative flex flex-col items-center justify-center p-2"
+      className="w-full h-full bg-background relative flex flex-col items-center justify-center p-2 focus:outline-none"
       tabIndex={0}
       onClick={() => setIsPaused(p => !p)}
     >

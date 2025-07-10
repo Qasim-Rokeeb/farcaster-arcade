@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
@@ -21,12 +22,7 @@ interface GameArenaProps {
 
 export default function GameArena({ game }: GameArenaProps) {
   const [score, setScore] = useState(0);
-  const [isClient, setIsClient] = useState(false);
   const [gameKey, setGameKey] = useState(Date.now()); // Used to force re-render on replay
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const handleReplay = () => {
     setScore(0);
@@ -69,7 +65,7 @@ export default function GameArena({ game }: GameArenaProps) {
         <div className="lg:col-span-2">
           <h1 className="text-3xl font-bold mb-4 font-headline">{game.name}</h1>
           <div className="aspect-video bg-muted/20 border rounded-lg flex items-center justify-center text-muted-foreground relative overflow-hidden">
-            {isClient ? <GameComponent key={gameKey} setScore={setScore} /> : <p>Loading game...</p>}
+            <GameComponent key={gameKey} setScore={setScore} />
           </div>
         </div>
 
@@ -79,7 +75,7 @@ export default function GameArena({ game }: GameArenaProps) {
               <CardTitle className="text-xl font-medium text-muted-foreground">SCORE</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-6xl font-bold text-primary">{isClient ? score : 0}</p>
+              <p className="text-6xl font-bold text-primary">{score}</p>
             </CardContent>
           </Card>
 

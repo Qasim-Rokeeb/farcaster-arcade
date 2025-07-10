@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -32,6 +33,7 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
   }, [snake]);
 
   const changeDirection = (newDirection: Direction) => {
+    if (isGameOver) return;
     const validMoves: Record<Direction, Direction> = { UP: 'DOWN', DOWN: 'UP', LEFT: 'RIGHT', RIGHT: 'LEFT' };
     if (direction !== validMoves[newDirection]) {
       setDirection(newDirection);
@@ -41,6 +43,7 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
         e.preventDefault();
+        if (isGameOver) return;
         switch (e.key) {
           case 'ArrowUp': changeDirection('UP'); break;
           case 'ArrowDown': changeDirection('DOWN'); break;
@@ -52,7 +55,7 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [direction]);
+  }, [direction, isGameOver]);
 
   useEffect(() => {
     if (!isRunning || isGameOver) return;
@@ -71,12 +74,14 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
 
         if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
           setIsGameOver(true);
+          setIsRunning(false);
           return newSnake;
         }
         
         for (let i = 1; i < newSnake.length; i++) {
           if (head.x === newSnake[i].x && head.y === newSnake[i].y) {
             setIsGameOver(true);
+            setIsRunning(false);
             return newSnake;
           }
         }
@@ -98,17 +103,10 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
   }, [snake, direction, isGameOver, isRunning, generateFood, setScore]);
 
   useEffect(() => {
+    setScore(0);
     generateFood();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (isGameOver) {
-    return (
-      <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-destructive-foreground bg-destructive/80">
-        Game Over!
-      </div>
-    );
-  }
 
   return (
     <div className="w-full h-full bg-background relative focus:outline-none" tabIndex={0}>
@@ -143,6 +141,11 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
                 <Button variant="outline" size="icon" className="touch-manipulation" onClick={() => changeDirection('RIGHT')}><ArrowRight /></Button>
             </div>
         </div>
+        {isGameOver && (
+          <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-3xl font-bold font-headline">
+            GAME OVER
+          </div>
+        )}
         {!isRunning && !isGameOver && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-3xl font-bold font-headline">
             PAUSED
