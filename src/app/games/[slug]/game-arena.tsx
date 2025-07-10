@@ -10,7 +10,7 @@ import Link from 'next/link';
 // Dynamically import game components
 import SnakeGame from '@/components/games/snake-game';
 import MemoryMatchGame from '@/components/games/memory-match-game';
-import BrickBreakerGame from '@/components/games/brick-breaker-game';
+import WhackAMoleGame from '@/components/games/whack-a-mole-game';
 import TetrisGame from '@/components/games/tetris-game';
 import PlaceholderGame from '@/components/games/placeholder-game';
 
@@ -39,8 +39,8 @@ export default function GameArena({ game }: GameArenaProps) {
         return SnakeGame;
       case 'memory-match':
         return MemoryMatchGame;
-      case 'brick-breaker':
-        return BrickBreakerGame;
+      case 'whack-a-mole':
+        return WhackAMoleGame;
       case 'tetris':
         return TetrisGame;
       case 'clicker-hero':

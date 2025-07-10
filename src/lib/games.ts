@@ -10,11 +10,11 @@ export interface Game {
 export const games: Game[] = [
   // Free and Popular Games
   {
-    id: 'brick-breaker',
-    name: 'Brick Breaker',
-    description: 'Break all the bricks with the ball. A timeless arcade classic.',
+    id: 'whack-a-mole',
+    name: 'Whack-a-Mole',
+    description: 'Test your reflexes! Whack the moles as they pop up.',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'brick breaker game',
+    dataAiHint: 'whack a mole',
     isPremium: false,
   },
   {
