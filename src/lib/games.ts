@@ -1,3 +1,4 @@
+
 export interface Game {
   id: string;
   name: string;
@@ -21,7 +22,7 @@ export const games: Game[] = [
     id: 'snake',
     name: 'Snake',
     description: "Guide the snake to eat the food, but don't hit the walls or yourself!",
-    imageUrl: 'https://images.unsplash.com/photo-1611892147311-39779359489a?q=80&w=600&h=400&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1679110449630-078e217ac7c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjYXJ0b29uJTIwc25ha2V8ZW58MHx8fHwxNzUyMTQwNjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080',
     dataAiHint: 'cartoon snake',
     isPremium: false,
   },
