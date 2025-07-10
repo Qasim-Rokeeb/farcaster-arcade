@@ -10,7 +10,8 @@ interface GamePageProps {
 }
 
 export default async function GamePage({ params }: GamePageProps) {
-  const game = getGameBySlug(params.slug);
+  const slug = params.slug;
+  const game = getGameBySlug(slug);
 
   if (!game) {
     notFound();
