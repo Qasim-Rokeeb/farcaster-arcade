@@ -8,7 +8,7 @@ const TILE_SIZE = 100 / GRID_SIZE; // Percentage
 const GAME_SPEED = 150; // ms
 
 interface SnakeGameProps {
-  setScore: (score: number) => void;
+  setScore: (score: number | ((prevScore: number) => number)) => void;
 }
 
 type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
@@ -84,7 +84,7 @@ export default function SnakeGame({ setScore }: SnakeGameProps) {
         newSnake.unshift(head);
 
         if (head.x === food.x && head.y === food.y) {
-          setScore(newSnake.length - 1);
+          setScore(s => s + 10);
           generateFood();
         } else {
           newSnake.pop();

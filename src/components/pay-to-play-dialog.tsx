@@ -92,7 +92,7 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
         toast({
             variant: 'destructive',
             title: 'Transaction Failed',
-            description: error.shortMessage || 'An unknown error occurred.',
+            description: "Transaction was rejected or failed.",
         });
     }
   }, [error, toast]);

@@ -21,11 +21,7 @@ const shuffleArray = (array: any[]) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
-export default function MemoryMatchGame({ setScore }: MemoryMatchGameProps) {
-  const [cards, setCards] = useState<Card[]>([]);
-  const [flippedCards, setFlippedCards] = useState<number[]>([]);
-
-  const initialCards = useMemo(() => {
+const createInitialCards = () => {
     const iconKeys = Object.keys(iconComponents) as (keyof typeof iconComponents)[];
     const gameIcons = [...iconKeys, ...iconKeys];
     return shuffleArray(gameIcons).map((icon, index) => ({
@@ -34,11 +30,14 @@ export default function MemoryMatchGame({ setScore }: MemoryMatchGameProps) {
       isFlipped: false,
       isMatched: false,
     }));
-  }, []);
+};
+
+export default function MemoryMatchGame({ setScore }: MemoryMatchGameProps) {
+  const [cards, setCards] = useState<Card[]>(createInitialCards);
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);
 
   useEffect(() => {
     setScore(() => 0);
-    setCards(initialCards);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
