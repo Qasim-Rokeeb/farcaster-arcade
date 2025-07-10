@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import type { Game } from '@/lib/games';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -43,6 +43,11 @@ export default function GameArena({ game }: GameArenaProps) {
       case '2048':
       case 'word-find':
       case 'sokoban':
+      case 'pac-man':
+      case 'flappy-bird':
+      case 'asteroids':
+      case 'pong':
+      case 'lights-out':
         return () => <PlaceholderGame gameName={game.name} />;
       default:
         return () => <PlaceholderGame gameName="Unknown Game" />;

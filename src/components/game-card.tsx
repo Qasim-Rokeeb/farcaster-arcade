@@ -12,29 +12,39 @@ import {
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Lock } from 'lucide-react';
+import { ArrowRight, Lock, Sparkles } from 'lucide-react';
 import { Badge } from './ui/badge';
-import { useAccount } from 'wagmi';
 import { useState, useEffect } from 'react';
-import PayToPlayDialog from './pay-to-play-dialog';
+import PremiumSubscribeButton from './premium-subscribe-button';
 
 interface GameCardProps {
   game: Game;
 }
 
 export default function GameCard({ game }: GameCardProps) {
-  const { isConnected } = useAccount();
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isPremiumUser, setIsPremiumUser] = useState(false);
   const [isClient, setIsClient] = useState(false);
   
   useEffect(() => {
     setIsClient(true);
     if (typeof window !== 'undefined') {
-      setIsUnlocked(localStorage.getItem(`unlocked_${game.id}`) === 'true');
+      const checkPremium = () => setIsPremiumUser(localStorage.getItem('isPremiumUser') === 'true');
+      checkPremium();
+      
+      // Listen for storage changes from other tabs/windows
+      window.addEventListener('storage', checkPremium);
+      
+      // Custom event to listen for subscription success in the same tab
+      window.addEventListener('subscriptionSuccess', checkPremium);
+
+      return () => {
+        window.removeEventListener('storage', checkPremium);
+        window.removeEventListener('subscriptionSuccess', checkPremium);
+      }
     }
-  }, [game.id]);
+  }, []);
   
-  const isEffectivelyLocked = game.isPremium && !isUnlocked;
+  const isEffectivelyLocked = game.isPremium && !isPremiumUser;
 
   return (
     <Card className={`flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${isEffectivelyLocked && isClient ? 'opacity-70' : ''}`}>
@@ -60,18 +70,21 @@ export default function GameCard({ game }: GameCardProps) {
         </div>
         {isClient && isEffectivelyLocked && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
-                <Lock className="h-12 w-12 text-white" />
+                <div className="text-center text-white p-4">
+                    <Lock className="h-12 w-12 mx-auto" />
+                    <p className="font-bold mt-2">Premium Game</p>
+                </div>
             </div>
         )}
       </CardContent>
       <CardFooter>
         {isClient && isEffectivelyLocked ? (
-          <PayToPlayDialog game={game} onUnlock={() => setIsUnlocked(true)}>
+          <PremiumSubscribeButton>
             <Button className="w-full" variant="secondary">
-              <Lock className="mr-2 h-4 w-4" />
-              {isConnected ? 'Unlock for 0.1 USDC' : 'Connect Wallet to Unlock'}
+              <Sparkles className="mr-2 h-4 w-4" />
+              Unlock All Premium
             </Button>
-          </PayToPlayDialog>
+          </PremiumSubscribeButton>
         ) : (
           <Button asChild className="w-full">
             <Link href={`/games/${game.id}`}>

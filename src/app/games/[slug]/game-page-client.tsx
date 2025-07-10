@@ -16,8 +16,8 @@ export default function GamePageClient({ game }: GamePageClientProps) {
 
   useEffect(() => {
     setIsClient(true);
-    const isUnlocked = localStorage.getItem(`unlocked_${game.id}`) === 'true';
-    if (!game.isPremium || isUnlocked) {
+    const isPremiumUser = localStorage.getItem('isPremiumUser') === 'true';
+    if (!game.isPremium || isPremiumUser) {
       setIsAllowed(true);
     } else {
       // If the user is on the client, and the game is locked, redirect them.
