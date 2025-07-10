@@ -13,7 +13,7 @@ export const games: Game[] = [
     id: 'whack-a-mole',
     name: 'Whack-a-Mole',
     description: 'Test your reflexes! Whack the moles as they pop up.',
-    imageUrl: 'https://images.unsplash.com/photo-1593348824345-95d49e759a23?q=80&w=600&h=400&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1718625057135-38939324889d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2xlJTIwaW1hZ2V8ZW58MHx8fHwxNzUyMTQwNTM4fDA&ixlib=rb-4.1.0&q=80&w=1080',
     dataAiHint: 'retro arcade',
     isPremium: false,
   },
