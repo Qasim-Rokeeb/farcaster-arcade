@@ -6,6 +6,7 @@ import { mainnet, sepolia, base } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getDefaultConfig } from 'connectkit';
 
+// This will be read from your .env.local file
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
 const config = createConfig(
