@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -56,7 +57,7 @@ export default function WhackAMoleGame({ setScore }: WhackAMoleGameProps) {
       clearInterval(timerInterval);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [popUpMole]);
+  }, []);
 
   const handleWhack = (index: number) => {
     if (gameOver || !moles[index]) return;
