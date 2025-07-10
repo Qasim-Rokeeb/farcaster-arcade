@@ -8,10 +8,16 @@ import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
+if (!walletConnectProjectId) {
+  console.error(
+    'ERROR: NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set in your .env.local file. WalletConnect will not function.'
+  );
+}
+
 const config = createConfig(
   getDefaultConfig({
-    // @ts-ignore
-    walletConnectProjectId: walletConnectProjectId!,
+    // Using an empty string fallback is a safer way to prevent crashes if the ID is missing.
+    walletConnectProjectId: walletConnectProjectId || '',
     chains: [base, mainnet, sepolia],
     transports: {
       [base.id]: http(
