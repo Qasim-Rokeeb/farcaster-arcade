@@ -7,16 +7,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getDefaultConfig } from 'connectkit';
 
 // This will be read from your .env.local file
-const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!;
+const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
-
-if (!walletConnectProjectId) {
-  console.error("Warning: NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set. WalletConnect will be disabled.");
-}
-
-if (!alchemyId) {
-    console.error("Warning: NEXT_PUBLIC_ALCHEMY_ID is not set. Blockchain connections will fail.");
-}
 
 const config = createConfig(
   getDefaultConfig({
