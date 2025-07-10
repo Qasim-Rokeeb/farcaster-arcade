@@ -21,8 +21,8 @@ export const games: Game[] = [
     id: 'snake',
     name: 'Snake',
     description: "Guide the snake to eat the food, but don't hit the walls or yourself!",
-    imageUrl: 'https://images.unsplash.com/photo-1585060168448-237834571469?q=80&w=600&h=400&auto=format&fit=crop',
-    dataAiHint: 'pixelated snake',
+    imageUrl: 'https://images.unsplash.com/photo-1611892147311-39779359489a?q=80&w=600&h=400&auto=format&fit=crop',
+    dataAiHint: 'cartoon snake',
     isPremium: false,
   },
   {
