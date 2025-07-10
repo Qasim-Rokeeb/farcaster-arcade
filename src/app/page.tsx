@@ -1,5 +1,3 @@
-'use client';
-
 import GameCard from '@/components/game-card';
 import { games } from '@/lib/games';
 
