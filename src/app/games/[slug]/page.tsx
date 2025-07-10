@@ -1,6 +1,4 @@
 
-import { getGameBySlug } from '@/lib/games';
-import { notFound } from 'next/navigation';
 import GamePageClient from './game-page-client';
 
 interface GamePageProps {
@@ -9,13 +7,9 @@ interface GamePageProps {
   };
 }
 
-export default async function GamePage({ params }: GamePageProps) {
-  const slug = params.slug;
-  const game = getGameBySlug(slug);
-
-  if (!game) {
-    notFound();
-  }
-
-  return <GamePageClient game={game} />;
+// This component now only extracts the slug and passes it to the client component.
+// All data fetching and logic is handled on the client to avoid the params error.
+export default function GamePage({ params }: GamePageProps) {
+  const { slug } = params;
+  return <GamePageClient slug={slug} />;
 }

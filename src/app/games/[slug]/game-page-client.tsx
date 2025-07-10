@@ -1,32 +1,43 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
-import type { Game } from '@/lib/games';
+import { redirect, notFound } from 'next/navigation';
+import { getGameBySlug, type Game } from '@/lib/games';
 import GameArena from './game-arena';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface GamePageClientProps {
-  game: Game;
+  slug: string;
 }
 
-export default function GamePageClient({ game }: GamePageClientProps) {
+export default function GamePageClient({ slug }: GamePageClientProps) {
+  const [game, setGame] = useState<Game | null>(null);
   const [isAllowed, setIsAllowed] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsClient(true);
+    const gameData = getGameBySlug(slug);
+
+    if (!gameData) {
+      notFound();
+      return;
+    }
+    
+    setGame(gameData);
+
     const isPremiumUser = localStorage.getItem('isPremiumUser') === 'true';
-    if (!game.isPremium || isPremiumUser) {
+    if (!gameData.isPremium || isPremiumUser) {
       setIsAllowed(true);
     } else {
       // If the user is on the client, and the game is locked, redirect them.
       redirect('/');
     }
-  }, [game]);
+    setIsLoading(false);
+  }, [slug]);
 
   // Render a skeleton while we confirm access on the client
-  if (!isClient || !isAllowed) {
+  if (isLoading || !game) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
@@ -49,5 +60,10 @@ export default function GamePageClient({ game }: GamePageClientProps) {
   }
 
   // Once access is confirmed, render the game arena
-  return <GameArena game={game} />;
+  if (isAllowed) {
+    return <GameArena game={game} />;
+  }
+  
+  // This should not be reached due to the redirect, but it's a safe fallback.
+  return null;
 }
