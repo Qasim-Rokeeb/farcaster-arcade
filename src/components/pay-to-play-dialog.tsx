@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, type ReactNode, useEffect } from 'react';
@@ -19,7 +20,7 @@ import { erc20Abi } from '@/lib/abi/erc20';
 import { Loader2 } from 'lucide-react';
 
 // ✅ Base USDC token contract address (Mainnet)
-const USDC_CONTRACT_ADDRESS = '0xd9AaA9a3F88d4C6f0aC2c53F476Ee90A6eD77C04';
+const USDC_CONTRACT_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bda02913';
 
 // ✅ Payment recipient address from environment variable
 const PAYMENT_RECIPIENT_ADDRESS = process.env.NEXT_PUBLIC_PAYMENT_RECIPIENT_ADDRESS;
@@ -38,10 +39,13 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
   const { toast } = useToast();
   const { data: hash, writeContract, isPending, error } = useWriteContract();
 
-  const { isLoading: isConfirming } = useWaitForTransactionReceipt({
+  const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
     enabled: Boolean(hash),
-    onSuccess: () => {
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
       toast({
         title: 'Payment Successful!',
         description: `You have unlocked ${game.name}. Enjoy!`,
@@ -49,10 +53,20 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
       localStorage.setItem(`unlocked_${game.id}`, 'true');
       onUnlock();
       setOpen(false);
-    },
-  });
+    }
+  }, [isSuccess, game.name, game.id, onUnlock, toast]);
 
   const handlePayment = async () => {
+    if (!PAYMENT_RECIPIENT_ADDRESS || !PAYMENT_RECIPIENT_ADDRESS.startsWith('0x')) {
+      console.error('Configuration Error: NEXT_PUBLIC_PAYMENT_RECIPIENT_ADDRESS is not set correctly.');
+      toast({
+        variant: 'destructive',
+        title: 'Configuration Error',
+        description: 'The payment recipient is not configured. Please contact support.',
+      });
+      return;
+    }
+
     if (!address) {
       toast({
         variant: 'destructive',
@@ -71,16 +85,6 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
       return;
     }
 
-    if (!PAYMENT_RECIPIENT_ADDRESS || !PAYMENT_RECIPIENT_ADDRESS.startsWith('0x')) {
-      console.error('Configuration Error: NEXT_PUBLIC_PAYMENT_RECIPIENT_ADDRESS is not set.');
-      toast({
-        variant: 'destructive',
-        title: 'Configuration Error',
-        description: 'The payment recipient is not configured correctly.',
-      });
-      return;
-    }
-
     try {
       writeContract({
         address: USDC_CONTRACT_ADDRESS,
@@ -92,6 +96,7 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
         ],
       });
     } catch (err) {
+      console.error(err)
       toast({
         variant: 'destructive',
         title: 'Unexpected Error',
