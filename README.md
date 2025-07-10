@@ -58,7 +58,7 @@ To receive payments for premium games, you must set your own wallet address.
 -   Replace the placeholder address (`0x000...`) with your public Ethereum wallet address.
 
 ### Step 4: Install Dependencies
-Install all the necessary packages using npm.
+Install all the necessary packages using npm. This will install the specific versions listed in `package-lock.json` to ensure stability.
 
 ```bash
 npm install
