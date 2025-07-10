@@ -1,3 +1,4 @@
+
 'use client';
 
 import { WagmiProvider, createConfig, http } from 'wagmi';
@@ -9,7 +10,7 @@ import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
 if (!walletConnectProjectId) {
-  console.warn("WalletConnect Project ID is not defined. WalletConnect functionality will be disabled.");
+  console.warn("WalletConnect Project ID is not defined in .env.local. WalletConnect functionality will be disabled.");
 }
 
 const config = createConfig(
@@ -23,8 +24,8 @@ const config = createConfig(
         `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
       ),
     },
-    // Safely provide the WalletConnect Project ID.
-    walletConnectProjectId: walletConnectProjectId!,
+    // Required: Safely provide the WalletConnect Project ID.
+    walletConnectProjectId: walletConnectProjectId || "",
     appName: 'Warpcast Arcade',
     appDescription: 'Your favorite retro games, onchain.',
     appUrl: 'https://warpcast-arcade.xyz',
