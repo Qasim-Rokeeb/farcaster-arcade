@@ -20,8 +20,8 @@ import { Loader2 } from 'lucide-react';
 
 // IMPORTANT: This is the Ethereum Mainnet USDC contract address.
 const USDC_CONTRACT_ADDRESS = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
-// IMPORTANT: Replace this with the wallet address that should receive the payments.
-const PAYMENT_RECIPIENT_ADDRESS = '0x0000000000000000000000000000000000000000';
+// The wallet address that should receive payments is now configured via environment variables.
+const PAYMENT_RECIPIENT_ADDRESS = process.env.NEXT_PUBLIC_PAYMENT_RECIPIENT_ADDRESS;
 const PRICE_IN_USDC = '0.1';
 
 interface PayToPlayDialogProps {
@@ -69,12 +69,12 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
         return;
     }
 
-    if (!PAYMENT_RECIPIENT_ADDRESS || PAYMENT_RECIPIENT_ADDRESS === '0x0000000000000000000000000000000000000000') {
-        console.error("Developer error: Please set PAYMENT_RECIPIENT_ADDRESS in pay-to-play-dialog.tsx");
+    if (!PAYMENT_RECIPIENT_ADDRESS || !PAYMENT_RECIPIENT_ADDRESS.startsWith('0x')) {
+        console.error("Configuration Error: NEXT_PUBLIC_PAYMENT_RECIPIENT_ADDRESS is not set in your environment variables.");
         toast({
             variant: 'destructive',
             title: 'Configuration Error',
-            description: 'The payment recipient has not been configured.',
+            description: 'The payment recipient has not been configured correctly.',
         });
         return;
     }
@@ -83,7 +83,7 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
       address: USDC_CONTRACT_ADDRESS,
       abi: erc20Abi,
       functionName: 'transfer',
-      args: [PAYMENT_RECIPIENT_ADDRESS, parseUnits(PRICE_IN_USDC, 6)], // USDC has 6 decimals
+      args: [PAYMENT_RECIPIENT_ADDRESS as `0x${string}`, parseUnits(PRICE_IN_USDC, 6)], // USDC has 6 decimals
     });
   };
 

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { WagmiProvider, createConfig, http } from 'wagmi';
@@ -6,19 +5,12 @@ import { mainnet, sepolia } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 
-// Ensure the WalletConnect Project ID is handled correctly, preventing crashes if it's missing.
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
-
-if (!walletConnectProjectId) {
-  console.warn("WalletConnect Project ID is not defined in .env.local. WalletConnect functionality will be disabled.");
-}
 
 const config = createConfig(
   getDefaultConfig({
-    // Require that a walletConnectProjectId be provided, but if it's not,
-    // an empty string will be used, which will disable WalletConnect.
-    walletConnectProjectId: walletConnectProjectId ?? "",
-
+    // @ts-ignore
+    walletConnectProjectId: walletConnectProjectId!,
     chains: [mainnet, sepolia],
     transports: {
       [mainnet.id]: http(
