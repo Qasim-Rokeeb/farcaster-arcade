@@ -4,20 +4,13 @@
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { mainnet, sepolia, base } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
+import { getDefaultConfig } from 'connectkit';
 
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
-if (!walletConnectProjectId) {
-  console.error(
-    'ERROR: NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set in your .env.local file. WalletConnect will not function.'
-  );
-}
-
 const config = createConfig(
   getDefaultConfig({
-    // Using an empty string fallback is a safer way to prevent crashes if the ID is missing.
-    walletConnectProjectId: walletConnectProjectId || '',
+    walletConnectProjectId: walletConnectProjectId!,
     chains: [base, mainnet, sepolia],
     transports: {
       [base.id]: http(
@@ -44,7 +37,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <ConnectKitProvider theme="retro">{children}</ConnectKitProvider>
+        {children}
       </QueryClientProvider>
     </WagmiProvider>
   );

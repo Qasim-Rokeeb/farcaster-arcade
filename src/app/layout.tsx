@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
 import { Web3Provider } from './wagmi-provider';
+import WagmiClientProvider from './wagmi-client-provider';
 
 export const metadata: Metadata = {
   title: 'Warpcast Arcade',
@@ -24,11 +25,13 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased h-full flex flex-col')}>
         <Web3Provider>
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Toaster />
+            <WagmiClientProvider>
+                <Header />
+                <main className="flex-1">
+                    {children}
+                </main>
+                <Toaster />
+            </WagmiClientProvider>
         </Web3Provider>
       </body>
     </html>
