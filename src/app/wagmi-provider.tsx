@@ -15,17 +15,20 @@ if (!walletConnectProjectId) {
 
 const config = createConfig(
   getDefaultConfig({
-    chains: [sepolia, mainnet],
+    // Require that a walletConnectProjectId be provided, but if it's not,
+    // an empty string will be used, which will disable WalletConnect.
+    walletConnectProjectId: walletConnectProjectId ?? "",
+
+    chains: [mainnet, sepolia],
     transports: {
-      [sepolia.id]: http(
-        `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
-      ),
       [mainnet.id]: http(
         `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
       ),
+      [sepolia.id]: http(
+        `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
+      ),
     },
-    // Required: Safely provide the WalletConnect Project ID.
-    walletConnectProjectId: walletConnectProjectId || "",
+    
     appName: 'Warpcast Arcade',
     appDescription: 'Your favorite retro games, onchain.',
     appUrl: 'https://warpcast-arcade.xyz',

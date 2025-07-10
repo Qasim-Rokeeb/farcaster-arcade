@@ -18,8 +18,8 @@ import type { Game } from '@/lib/games';
 import { erc20Abi } from '@/lib/abi/erc20';
 import { Loader2 } from 'lucide-react';
 
-// IMPORTANT: This is the Sepolia testnet USDC contract address.
-const USDC_CONTRACT_ADDRESS = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7aA8'; 
+// IMPORTANT: This is the Ethereum Mainnet USDC contract address.
+const USDC_CONTRACT_ADDRESS = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
 // IMPORTANT: Replace this with the wallet address that should receive the payments.
 const PAYMENT_RECIPIENT_ADDRESS = '0x0000000000000000000000000000000000000000';
 const PRICE_IN_USDC = '0.1';
@@ -49,7 +49,7 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
         setOpen(false);
       }
     });
-  
+
   const handlePayment = async () => {
     if (!address) {
       toast({
@@ -59,12 +59,12 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
       });
       return;
     }
-    
-    if (chain?.id !== 11155111) { // Sepolia chain ID
+
+    if (chain?.id !== 1) { // Ethereum Mainnet chain ID
         toast({
             variant: 'destructive',
             title: 'Wrong Network',
-            description: 'Please switch to the Sepolia network to make a payment.',
+            description: 'Please switch to the Ethereum Mainnet to make a payment.',
         });
         return;
     }
@@ -109,7 +109,7 @@ export default function PayToPlayDialog({ game, onUnlock, children }: PayToPlayD
         </DialogHeader>
         <div className="py-4">
             <p className="text-sm text-muted-foreground">
-                You are about to send {PRICE_IN_USDC} USDC to the game developer. This transaction will be processed on the Sepolia test network.
+                You are about to send {PRICE_IN_USDC} USDC to the game developer. This transaction will be processed on the Ethereum Mainnet.
             </p>
         </div>
         <DialogFooter>
