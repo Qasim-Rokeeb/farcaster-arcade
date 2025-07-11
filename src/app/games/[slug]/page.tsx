@@ -2,12 +2,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { redirect, notFound, usePathname } from 'next/navigation';
+import { notFound, usePathname } from 'next/navigation';
 import { getGameBySlug, type Game } from '@/lib/games';
 import GameArena from './game-arena';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// This component is now fully client-side to avoid the params error.
+// This component is now fully client-side to avoid server-side params errors.
 export default function GamePage() {
   const pathname = usePathname();
   const slug = pathname.split('/').pop() || '';
@@ -25,14 +25,6 @@ export default function GamePage() {
       }
       
       setGame(gameData);
-
-      const isPremiumUser = localStorage.getItem('isPremiumUser') === 'true';
-      if (!gameData.isPremium || isPremiumUser) {
-        // User is allowed to play
-      } else {
-        // If the game is locked, redirect them.
-        redirect('/');
-      }
       setIsLoading(false);
     }
   }, [slug]);

@@ -1,29 +1,13 @@
+
 'use client';
 
-import { Gamepad2, Sparkles } from 'lucide-react';
+import { Gamepad2, Github, Heart } from 'lucide-react';
 import Link from 'next/link';
 import ConnectWalletButton from './connect-wallet-button';
-import { useEffect, useState } from 'react';
 import PremiumSubscribeButton from './premium-subscribe-button';
+import { Button } from './ui/button';
 
 export default function Header() {
-  const [isClient, setIsClient] = useState(false);
-  const [isPremiumUser, setIsPremiumUser] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    const checkPremium = () => setIsPremiumUser(localStorage.getItem('isPremiumUser') === 'true');
-    checkPremium();
-    
-    window.addEventListener('storage', checkPremium);
-    window.addEventListener('subscriptionSuccess', checkPremium);
-
-    return () => {
-      window.removeEventListener('storage', checkPremium);
-      window.removeEventListener('subscriptionSuccess', checkPremium);
-    };
-  }, []);
-
   return (
     <header className="bg-card/80 backdrop-blur-sm border-b sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -35,7 +19,18 @@ export default function Header() {
             </span>
           </Link>
           <div className="flex items-center gap-4">
-            {isClient && !isPremiumUser && <PremiumSubscribeButton />}
+            <Button asChild variant="outline">
+                <a href="https://github.com/Qasim-Rokeeb/farcaster-arcade" target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4" />
+                    Contribute
+                </a>
+            </Button>
+            <PremiumSubscribeButton>
+                <Button>
+                    <Heart className="mr-2 h-4 w-4" />
+                    Sponsor this Project
+                </Button>
+            </PremiumSubscribeButton>
             <ConnectWalletButton />
           </div>
         </div>

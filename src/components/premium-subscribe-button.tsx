@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, type ReactNode, useEffect } from 'react';
@@ -15,7 +16,7 @@ import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagm
 import { parseUnits } from 'viem';
 import { useToast } from '@/hooks/use-toast';
 import { erc20Abi } from '@/lib/abi/erc20';
-import { Loader2, Sparkles } from 'lucide-react';
+import { Loader2, Heart } from 'lucide-react';
 
 // Base USDC token contract address (Mainnet)
 const USDC_CONTRACT_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bda02913';
@@ -23,7 +24,7 @@ const USDC_CONTRACT_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bda02913';
 // Payment recipient address from environment variable
 const PAYMENT_RECIPIENT_ADDRESS = process.env.NEXT_PUBLIC_PAYMENT_RECIPIENT_ADDRESS;
 
-const PRICE_IN_USDC = '5'; // New subscription price
+const PRICE_IN_USDC = '5'; // Sponsorship amount
 
 interface PremiumSubscribeButtonProps {
   children?: ReactNode;
@@ -43,12 +44,9 @@ export default function PremiumSubscribeButton({ children }: PremiumSubscribeBut
   useEffect(() => {
     if (isSuccess) {
       toast({
-        title: 'Subscription Successful!',
-        description: `You now have access to all premium games. Enjoy!`,
+        title: 'Thank you for your support!',
+        description: `Your sponsorship is greatly appreciated.`,
       });
-      localStorage.setItem('isPremiumUser', 'true');
-      // Dispatch a custom event to notify other components on the same page
-      window.dispatchEvent(new Event('subscriptionSuccess'));
       setOpen(false);
     }
   }, [isSuccess, toast]);
@@ -89,7 +87,7 @@ export default function PremiumSubscribeButton({ children }: PremiumSubscribeBut
       toast({
         variant: 'destructive',
         title: 'Wrong Network',
-        description: 'Please switch to the Base Mainnet to subscribe.',
+        description: 'Please switch to the Base Mainnet to sponsor.',
       });
       return;
     }
@@ -116,8 +114,8 @@ export default function PremiumSubscribeButton({ children }: PremiumSubscribeBut
 
   const triggerButton = children ?? (
     <Button>
-        <Sparkles className="mr-2 h-4 w-4" />
-        Upgrade to Premium
+        <Heart className="mr-2 h-4 w-4" />
+        Sponsor this Project
     </Button>
   );
 
@@ -126,14 +124,14 @@ export default function PremiumSubscribeButton({ children }: PremiumSubscribeBut
       <DialogTrigger asChild>{triggerButton}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Unlock All Premium Games</DialogTitle>
+          <DialogTitle>Sponsor Warpcast Arcade</DialogTitle>
           <DialogDescription>
-            For a one-time payment of ${PRICE_IN_USDC} USDC, you'll get lifetime access to all current and future premium games in the Warpcast Arcade.
+            Support the development of this open-source project with a one-time sponsorship of ${PRICE_IN_USDC} USDC. Your contribution helps keep the arcade running!
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
           <p className="text-sm text-muted-foreground">
-            You are about to send ${PRICE_IN_USDC} USDC to the game developer. This transaction will be processed on the Base Mainnet.
+            You are about to send ${PRICE_IN_USDC} USDC to the project developer. This transaction will be processed on the Base Mainnet.
           </p>
         </div>
         <DialogFooter>
@@ -142,7 +140,7 @@ export default function PremiumSubscribeButton({ children }: PremiumSubscribeBut
             {(isPending || isConfirming) && (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             )}
-            {isConfirming ? 'Confirming...' : isPending ? 'Check Wallet' : `Pay $${PRICE_IN_USDC} USDC`}
+            {isConfirming ? 'Confirming...' : isPending ? 'Check Wallet' : `Sponsor for $${PRICE_IN_USDC} USDC`}
           </Button>
         </DialogFooter>
       </DialogContent>

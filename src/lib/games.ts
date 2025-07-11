@@ -41,7 +41,7 @@ export const games: Game[] = [
     description: 'Fit the falling blocks together to clear lines and score points.',
     imageUrl: '/assets/images/tetris.png',
     dataAiHint: 'geometric blocks',
-    isPremium: true,
+    isPremium: false,
   },
   {
     id: 'sokoban',
@@ -49,7 +49,7 @@ export const games: Game[] = [
     description: 'Push boxes to their storage locations. A classic logic puzzle.',
     imageUrl: '/assets/images/sokoban.png',
     dataAiHint: 'wooden crate',
-    isPremium: true,
+    isPremium: false,
   },
   {
     id: '2048',
@@ -57,7 +57,7 @@ export const games: Game[] = [
     description: 'Slide the tiles and combine them to reach the 2048 tile!',
     imageUrl: '/assets/images/2048.png',
     dataAiHint: 'number tiles',
-    isPremium: true,
+    isPremium: false,
   },
   {
     id: 'pac-man',
@@ -65,7 +65,7 @@ export const games: Game[] = [
     description: 'Navigate the maze, eat the dots, and avoid the ghosts.',
     imageUrl: '/assets/images/pac-man.png',
     dataAiHint: 'retro maze',
-    isPremium: true,
+    isPremium: false,
   },
   {
     id: 'asteroids',
@@ -73,7 +73,7 @@ export const games: Game[] = [
     description: 'Pilot a spaceship and destroy asteroids and flying saucers.',
     imageUrl: '/assets/images/asteroids.png',
     dataAiHint: 'space spaceship',
-    isPremium: true,
+    isPremium: false,
   },
     {
     id: 'flappy-bird',
@@ -81,7 +81,7 @@ export const games: Game[] = [
     description: 'Guide the bird through the pipes with a simple tap.',
     imageUrl: '/assets/images/flappy-bird.png',
     dataAiHint: 'pixel bird',
-    isPremium: true,
+    isPremium: false,
   },
   {
     id: 'pong',
@@ -89,7 +89,7 @@ export const games: Game[] = [
     description: 'The original table tennis classic. A two-dimensional sports game.',
     imageUrl: '/assets/images/pong.png',
     dataAiHint: 'retro paddle',
-    isPremium: true,
+    isPremium: false,
   },
   {
     id: 'lights-out',
@@ -97,7 +97,7 @@ export const games: Game[] = [
     description: 'A puzzle where toggling a light also toggles its neighbors.',
     imageUrl: '/assets/images/lights-out.png',
     dataAiHint: 'light grid',
-    isPremium: true,
+    isPremium: false,
   },
 ];
 
