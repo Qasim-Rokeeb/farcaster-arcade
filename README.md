@@ -1,35 +1,59 @@
 
 # 🎮 Warpcast Arcade
 
-Warpcast Arcade is a lightweight browser-based platform for playing retro-style games like Tetris, Sokoban, and Mini Car Racing — all within a slick, shareable interface.
+**Warpcast Arcade** is a free, open-source gaming platform built for Farcaster Frames. Play retro-style classics like Tetris, Sokoban, and Mini Car Racing — right inside the Warpcast feed.
 
 ---
 
-## ✨ Highlights
+## ✨ Features
 
-- **Arcade Classics** – A curated mix of addictive, nostalgic games.
-- **Web3 Ready** – Connect your crypto wallet effortlessly.
-- **Modern UI** – Built with React, Tailwind CSS, and ShadCN UI in sleek dark mode.
-- **Fully Browser-Based** – No backend; games and payments run directly in your browser.
-
----
-
-## 🧪 Tech Stack
-
-- **Frontend**: React, Next.js, TypeScript  
-- **Styling**: Tailwind CSS, ShadCN UI  
-- **Web3**: Wagmi, Viem, ConnectKit  
-- **Deployment**: Vercel / Firebase Hosting
+- 🕹 **Frame-Playable Games** – No redirects or installs. Play instantly inside Warpcast.
+- 🌐 **Wallet Ready** – Connect seamlessly via WalletConnect + Wagmi.
+- 🎨 **Retro UI** – Built with Tailwind CSS and ShadCN UI in full dark mode.
+- 💻 **Open Source & Customizable** – Easily fork, deploy, and add your own games.
+- 💖 **Community Supported** – Enjoy it for free, or [Tip the Dev](#-support)
 
 ---
 
-## 🚀 Deployment
+## 🚀 Live Demo
 
-Optimized for modern web hosting platforms like **Vercel** or **Firebase App Hosting**. Ensure environment variables are configured properly.
+Try it on Warpcast:  
+👉 [https://warpcast-arcade.vercel.app](https://warpcast-arcade.vercel.app)
+
+---
+
+## 🧱 Built With
+
+| Layer      | Stack                                        |
+|------------|----------------------------------------------|
+| Framework  | Next.js, React, TypeScript                   |
+| Styling    | Tailwind CSS, ShadCN UI                      |
+| Web3       | Wagmi, Viem, ConnectKit                      |
+| Hosting    | Vercel / Firebase                            |
+| Frames     | Frame HTML + Farcaster Open Frames Spec      |
+
+---
+
+## 🛠 Developer Setup
+
+See [`README.dev.md`](./README.dev.md) to run locally or add your own games.
+
+---
+
+## 💖 Support
+
+Love the project? Keep the arcade alive:  
+[👉 Tip the Dev](https://warpcast.com/~/channel/warpcast-arcade) via $DEGEN, $FAR, or ETH.
+
+---
+
+## 🤝 Contributing
+
+Start with [`CONTRIBUTING.md`](./CONTRIBUTING.md) — we welcome games, UI tweaks, and doc improvements.
 
 ---
 
 ## 📄 License
 
-MIT License
+MIT License — free to use, fork, and remix with attribution.
 ```
