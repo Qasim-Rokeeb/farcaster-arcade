@@ -1,54 +1,20 @@
 
-# 🧪 Warpcast Arcade — Developer Setup Guide
+# 🧪 Warpcast Arcade — Developer Guide
 
-This guide helps developers set up, run, and customize the Warpcast Arcade project locally.
+This guide helps you run Warpcast Arcade locally and add your own games or contributions.
 
 ---
 
-## ⚙️ Local Development Setup
+## 🛠 Local Setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/farcaster-minigames.git
-cd farcaster-minigames
+git clone https://github.com/YOUR_USERNAME/warpcast-arcade.git
+cd warpcast-arcade
 ```
 
----
-
-### 2. Environment Variables
-
-Create a `.env.local` file:
-
-```bash
-cp .env.example .env.local
-```
-
-Fill in the following values:
-
-```env
-NEXT_PUBLIC_ALCHEMY_API_KEY=your_alchemy_key
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_walletconnect_project_id
-```
-
-> Ensure you're using the **Sepolia** network for Alchemy.
-
----
-
-### 3. Set Payment Recipient Address
-
-To receive payments for unlocking premium games:
-
-- Open: `src/components/pay-to-play-dialog.tsx`
-- Replace the `PAYMENT_RECIPIENT_ADDRESS` constant with your Ethereum wallet address:
-
-```ts
-const PAYMENT_RECIPIENT_ADDRESS = "0xYourWalletAddressHere";
-```
-
----
-
-### 4. Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
@@ -56,47 +22,71 @@ npm install
 
 ---
 
-### 5. Start the Development Server
+## 🌐 Environment Variables
+
+Create a `.env.local` file:
+
+```bash
+cp .env.example .env.local
+```
+
+Add the required environment variables:
+
+```env
+NEXT_PUBLIC_ALCHEMY_API_KEY=yourAlchemyKey
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=yourWalletConnectProjectID
+```
+
+Use **Sepolia** or **Base** for development/testing.
+
+---
+
+## ▶ Run Locally
 
 ```bash
 npm run dev
 ```
 
-Visit: [http://localhost:9002](http://localhost:9002)
+Open your browser at:  
+[http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🚀 Deployment Instructions
+## 🎮 Add a Game
 
-Deploy using:
+To add your own game:
 
-- **[Vercel](https://vercel.com/)** – Recommended for Next.js support
-- **[Firebase App Hosting](https://firebase.google.com/docs/app-hosting)**
-
-Don’t forget to configure environment variables in your host's dashboard.
+1. Create a folder under `src/games/your-game-name`
+2. Add your game as a React component
+3. Register it in `src/data/games.ts`
+4. (Optional) Add Frame logic in `/api/frame-response.ts` if you'd like the game to be shareable as a Farcaster Frame
 
 ---
 
-## 🧱 Tech Stack Overview
+## 💖 Tip / Support Logic
 
-| Layer      | Tools                                        |
-|------------|----------------------------------------------|
-| Frontend   | Next.js, React, TypeScript                   |
-| UI/UX      | Tailwind CSS, ShadCN UI                      |
-| Web3       | Wagmi, Viem, ConnectKit                      |
-| Hosting    | Vercel / Firebase                            |
-| Payments   | Direct ERC20 transfers on Ethereum (Sepolia) |
+To power the "Tip the Dev" or "Support the Game" button:
+
+- Edit `src/components/support-dialog.tsx`
+- Set your preferred tipping methods (e.g. ETH address, $DEGEN tag, or Warpcast link)
+- You can integrate on-chain payments, Warpcast call-to-actions, or external donation links
+
+---
+
+## 🚀 Deployment
+
+Use:
+
+- [Vercel](https://vercel.com/) – great for fast Next.js hosting
+- [Firebase Hosting](https://firebase.google.com/docs/app-hosting)
+
+Make sure to set your environment variables in your platform's dashboard.
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests welcome! For major changes, open an issue first to discuss what you'd like to change.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for contribution rules and project structure.
 
 ---
-
-## 📄 License
-
-MIT License
-```
-
+`
