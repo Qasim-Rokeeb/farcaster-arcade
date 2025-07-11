@@ -1,87 +1,35 @@
+
 # 🎮 Warpcast Arcade
 
-Warpcast Arcade is a lightweight, web-native app that brings classic casual games like Tetris, Sokoban, and Mini Car Racing directly to your browser. Users can play, share, and compete — all without leaving the app.
+Warpcast Arcade is a lightweight browser-based platform for playing retro-style games like Tetris, Sokoban, and Mini Car Racing — all within a slick, shareable interface.
 
 ---
 
-## 🎯 Features
+## ✨ Highlights
 
-- 🎮 **Classic Games Collection**: A curated selection of timeless arcade and puzzle games.
-- 💰 **Play-to-Unlock**: Access premium games by making a small one-time payment with your crypto wallet.
-- 🔗 **Web3 Wallet Integration**: Uses ConnectKit and Wagmi for a seamless wallet connection experience.
-- 🎨 **Retro-Futuristic UI**: A sleek dark mode interface built with Tailwind CSS and ShadCN UI.
-- 🚀 **Serverless Architecture**: All game and payment logic runs directly in the browser, interacting with the Ethereum blockchain.
-
----
-
-## 🛠️ Tech Stack
-
-| Layer         | Stack                                         |
-|---------------|-----------------------------------------------|
-| Frontend      | Next.js, React, TypeScript, Tailwind CSS, ShadCN UI |
-| Web3 Logic    | Wagmi, Viem, ConnectKit                       |
-| Payments      | Direct ERC20 token transfers on-chain         |
-| Hosting       | Vercel, Firebase App Hosting, or similar      |
+- **Arcade Classics** – A curated mix of addictive, nostalgic games.
+- **Web3 Ready** – Connect your crypto wallet effortlessly.
+- **Modern UI** – Built with React, Tailwind CSS, and ShadCN UI in sleek dark mode.
+- **Fully Browser-Based** – No backend; games and payments run directly in your browser.
 
 ---
 
-## 🧪 Installation & Local Development Guide
+## 🧪 Tech Stack
 
-Follow these steps to get the project running on your local machine.
-
-### Step 1: Clone the Repository
-First, clone this repository to your local machine using git.
-
-```bash
-git clone https://github.com/your-username/farcaster-minigames.git
-cd farcaster-minigames
-```
-
-### Step 2: Set Up Environment Variables
-This project requires API keys for wallet connections.
-
-1.  **Create a `.env.local` file** by copying the example file:
-    ```bash
-    cp .env.example .env.local
-    ```
-2.  **Get API Keys:**
-    *   **Alchemy API Key:** Go to [Alchemy](https://www.alchemy.com/), create a free account, make a new App for the **Sepolia** network, and get your API key.
-    *   **WalletConnect Project ID:** Go to [WalletConnect Cloud](https://cloud.walletconnect.com/), create a new project, and copy your Project ID.
-3.  **Fill in your `.env.local` file:**
-    Open the `.env.local` file and replace the placeholder values with your actual keys. The `NEXT_PUBLIC_` prefix is required by Next.js to expose these variables to the browser.
-
-### Step 3: Configure Your Payment Address
-To receive payments for premium games, you must set your own wallet address.
-
--   Open the file: `src/components/pay-to-play-dialog.tsx`
--   Find the `PAYMENT_RECIPIENT_ADDRESS` constant.
--   Replace the placeholder address (`0x000...`) with your public Ethereum wallet address.
-
-### Step 4: Install Dependencies
-Install all the necessary packages using npm. This will install the specific versions listed in `package-lock.json` to ensure stability.
-
-```bash
-npm install
-```
-
-### Step 5: Run the Development Server
-Now, you can start the local development server.
-
-```bash
-npm run dev
-```
-
-### Step 6: Open the App
-Open your browser and navigate to [http://localhost:9002](http://localhost:9002). You should now see the Warpcast Arcade homepage!
+- **Frontend**: React, Next.js, TypeScript  
+- **Styling**: Tailwind CSS, ShadCN UI  
+- **Web3**: Wagmi, Viem, ConnectKit  
+- **Deployment**: Vercel / Firebase Hosting
 
 ---
 
-## 📦 Deployment
+## 🚀 Deployment
 
-Deploy to [Vercel](https://vercel.com/) or [Firebase App Hosting](https://firebase.google.com/docs/app-hosting) for the best performance and easy setup. Ensure you set your environment variables in your hosting provider's settings.
+Optimized for modern web hosting platforms like **Vercel** or **Firebase App Hosting**. Ensure environment variables are configured properly.
 
 ---
 
 ## 📄 License
 
 MIT License
+```
