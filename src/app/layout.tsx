@@ -25,16 +25,16 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('font-body antialiased h-full flex flex-col')}>
+         <Providers>   
         <Header />
         
           <main className="flex-1">
-            <Providers>        
+                
             {children}
-             </Providers>
+             
           </main>
-       
-
         <Toaster />
+        </Providers>
       </body>
     </html>
   );
