@@ -13,9 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Lock, Sparkles } from 'lucide-react';
-import { Badge } from './ui/badge';
-import PremiumSubscribeButton from './premium-subscribe-button';
+import { ArrowRight } from 'lucide-react';
 
 interface GameCardProps {
   game: Game;

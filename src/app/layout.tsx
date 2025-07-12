@@ -1,10 +1,10 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
-import { Web3Provider } from './wagmi-provider';
-import WagmiClientProvider from './wagmi-client-provider';
+
 
 export const metadata: Metadata = {
   title: 'Warpcast Arcade',
@@ -24,15 +24,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('font-body antialiased h-full flex flex-col')}>
-        <Web3Provider>
-            <WagmiClientProvider>
-                <Header />
-                <main className="flex-1">
-                    {children}
-                </main>
-                <Toaster />
-            </WagmiClientProvider>
-        </Web3Provider>
+        <Header />
+        <main className="flex-1">
+            {children}
+        </main>
+        <Toaster />
       </body>
     </html>
   );

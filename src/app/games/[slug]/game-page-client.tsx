@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { redirect, notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { getGameBySlug, type Game } from '@/lib/games';
 import GameArena from './game-arena';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -13,7 +13,6 @@ interface GamePageClientProps {
 
 export default function GamePageClient({ slug }: GamePageClientProps) {
   const [game, setGame] = useState<Game | null>(null);
-  const [isAllowed, setIsAllowed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,18 +24,9 @@ export default function GamePageClient({ slug }: GamePageClientProps) {
     }
     
     setGame(gameData);
-
-    const isPremiumUser = localStorage.getItem('isPremiumUser') === 'true';
-    if (!gameData.isPremium || isPremiumUser) {
-      setIsAllowed(true);
-    } else {
-      // If the user is on the client, and the game is locked, redirect them.
-      redirect('/');
-    }
     setIsLoading(false);
   }, [slug]);
 
-  // Render a skeleton while we confirm access on the client
   if (isLoading || !game) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -59,11 +49,5 @@ export default function GamePageClient({ slug }: GamePageClientProps) {
     );
   }
 
-  // Once access is confirmed, render the game arena
-  if (isAllowed) {
-    return <GameArena game={game} />;
-  }
-  
-  // This should not be reached due to the redirect, but it's a safe fallback.
-  return null;
+  return <GameArena game={game} />;
 }

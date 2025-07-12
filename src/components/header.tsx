@@ -1,10 +1,8 @@
 
 'use client';
 
-import { Gamepad2, Github, Heart } from 'lucide-react';
+import { Gamepad2, Github } from 'lucide-react';
 import Link from 'next/link';
-import ConnectWalletButton from './connect-wallet-button';
-import PremiumSubscribeButton from './premium-subscribe-button';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from './ui/tooltip';
 
@@ -34,23 +32,7 @@ export default function Header() {
                   <p>Contribute on GitHub</p>
                 </TooltipContent>
               </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <PremiumSubscribeButton>
-                    <Button size="icon" className="h-9 w-9 md:w-auto md:px-4 md:py-2">
-                        <Heart className="h-4 w-4" />
-                        <span className="hidden md:inline ml-2">Sponsor</span>
-                    </Button>
-                  </PremiumSubscribeButton>
-                </TooltipTrigger>
-                <TooltipContent className="md:hidden">
-                  <p>Sponsor this Project</p>
-                </TooltipContent>
-              </Tooltip>
             </TooltipProvider>
-
-            <ConnectWalletButton />
           </div>
         </div>
       </div>
