@@ -1,6 +1,7 @@
 
 import type { Metadata } from 'next';
 import './globals.css';
+import { Providers } from "@/app/providers";
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
@@ -25,11 +26,15 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased h-full flex flex-col')}>
         <Header />
-        <main className="flex-1">
+        <Providers>        
+          <main className="flex-1">
             {children}
-        </main>
+          </main>
+        </Providers>
+
         <Toaster />
       </body>
     </html>
   );
 }
+
