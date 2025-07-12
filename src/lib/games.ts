@@ -70,7 +70,7 @@ export const games: Game[] = [
     id: 'snake',
     name: 'Snake',
     description: 'Guide the snake to eat the food and grow longer.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: '/assets/images/snakke.png',
     dataAiHint: 'green snake',
     isPremium: false,
   },
