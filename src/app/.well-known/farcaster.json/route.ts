@@ -2,13 +2,12 @@ export async function GET() {
   const appUrl = process.env.NEXT_PUBLIC_URL;
 
   const config = {
-    accountAssociation: {
-      header:
-        "",
-      payload: "",
-      signature:
-        "",
-    },
+    
+     "accountAssociation": {
+    "header": "eyJmaWQiOjg3MjkzNSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEFEMDYzMjVEMjExODhEQ2FlMEJFRDMxODQ0ZDg3MjllQ0Y3MDQxRGIifQ",
+    "payload": "eyJkb21haW4iOiJmYXJjYXN0ZXItYXJjYWRlLnZlcmNlbC5hcHAifQ",
+    "signature": "MHgzMjk1ZDljZjM2YmFkOGM5MTY0MzgyYjhjYzNhMWMyYWYxNTAzOGNmZmVjYTE2NDllNjAyMWRmOGU1MWYxYzZmNGJmMTE2NWIwNzdiYTA1NjRlMTFjZjZiNzkyN2JmMTdlYTU4M2NkZWU3OGRjMjViMWRlNDAwNDQ1MDA1MDFjNTFj"
+  },
     frame: {
       version: "1",
       name: "Farcaster Arcade",
@@ -24,3 +23,5 @@ export async function GET() {
 
   return Response.json(config);
 }
+
+ 
