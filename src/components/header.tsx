@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Gamepad2, Github } from 'lucide-react';
+import { Gamepad2, Github, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from './ui/tooltip';
@@ -18,6 +18,19 @@ export default function Header() {
             </span>
           </Link>
           <div className="flex items-center gap-2 md:gap-4">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" className="h-9 w-9 md:w-auto md:px-4 md:py-2">
+                        <Heart className="h-4 w-4 text-red-500" />
+                        <span className="hidden md:inline ml-2">Support</span>
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent className="md:hidden">
+                  <p>Support the project</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
