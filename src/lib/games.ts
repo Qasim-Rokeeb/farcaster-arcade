@@ -34,7 +34,6 @@ export const games: Game[] = [
     dataAiHint: 'retro arcade',
     isPremium: false,
   },
-  // Premium Games
   {
     id: 'tetris',
     name: 'Tetris',
@@ -43,7 +42,15 @@ export const games: Game[] = [
     dataAiHint: 'geometric blocks',
     isPremium: false,
   },
-  {
+    {
+    id: 'flappy-bird',
+    name: 'Flappy Bird',
+    description: 'Guide the bird through the pipes with a simple tap.',
+    imageUrl: '/assets/images/flappy-bird.png',
+    dataAiHint: 'pixel bird',
+    isPremium: false,
+  },
+    {
     id: 'sokoban',
     name: 'Sokoban',
     description: 'Push boxes to their storage locations. A classic logic puzzle.',
@@ -73,14 +80,6 @@ export const games: Game[] = [
     description: 'Pilot a spaceship and destroy asteroids and flying saucers.',
     imageUrl: '/assets/images/asteroids.png',
     dataAiHint: 'space spaceship',
-    isPremium: false,
-  },
-    {
-    id: 'flappy-bird',
-    name: 'Flappy Bird',
-    description: 'Guide the bird through the pipes with a simple tap.',
-    imageUrl: '/assets/images/flappy-bird.png',
-    dataAiHint: 'pixel bird',
     isPremium: false,
   },
   {

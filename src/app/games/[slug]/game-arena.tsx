@@ -14,6 +14,9 @@ import WhackAMoleGame from '@/components/games/whack-a-mole-game';
 import TetrisGame from '@/components/games/tetris-game';
 import PlaceholderGame from '@/components/games/placeholder-game';
 import ClickerHeroGame from '@/components/games/clicker-hero-game';
+import Game2048 from '@/components/games/2048-game';
+import FlappyBirdGame from '@/components/games/flappy-bird-game';
+import SokobanGame from '@/components/games/sokoban-game';
 
 
 interface GameArenaProps {
@@ -40,10 +43,13 @@ export default function GameArena({ game }: GameArenaProps) {
       case 'tetris':
         return TetrisGame;
       case '2048':
-      case 'word-find':
-      case 'sokoban':
-      case 'pac-man':
+        return Game2048;
       case 'flappy-bird':
+        return FlappyBirdGame;
+      case 'sokoban':
+        return SokobanGame;
+      case 'word-find':
+      case 'pac-man':
       case 'asteroids':
       case 'pong':
       case 'lights-out':
