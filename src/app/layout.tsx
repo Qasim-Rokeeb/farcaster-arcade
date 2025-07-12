@@ -26,11 +26,13 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased h-full flex flex-col')}>
         <Header />
-        <Providers>        
+        
           <main className="flex-1">
+            <Providers>        
             {children}
+             </Providers>
           </main>
-        </Providers>
+       
 
         <Toaster />
       </body>
