@@ -17,6 +17,9 @@ import ClickerHeroGame from '@/components/games/clicker-hero-game';
 import Game2048 from '@/components/games/2048-game';
 import FlappyBirdGame from '@/components/games/flappy-bird-game';
 import SokobanGame from '@/components/games/sokoban-game';
+import SnakeGame from '@/components/games/snake-game';
+import SimonSaysGame from '@/components/games/simon-says-game';
+import HangmanGame from '@/components/games/hangman-game';
 
 
 interface GameArenaProps {
@@ -48,6 +51,12 @@ export default function GameArena({ game }: GameArenaProps) {
         return FlappyBirdGame;
       case 'sokoban':
         return SokobanGame;
+      case 'snake':
+        return SnakeGame;
+      case 'simon-says':
+        return SimonSaysGame;
+      case 'hangman':
+        return HangmanGame;
       case 'word-find':
       case 'pac-man':
       case 'asteroids':
