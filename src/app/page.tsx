@@ -1,10 +1,24 @@
 
 import GameCard from '@/components/game-card';
 import { games } from '@/lib/games';
+import { useEffect, useState } from "react";
+import sdk from "@farcaster/frame-sdk";
 
 export default function Home() {
+  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
+
+  useEffect(() => {
+    const load = async () => {
+      sdk.actions.ready();
+    };
+    if (sdk && !isSDKLoaded) {
+      setIsSDKLoaded(true);
+      load();
+    }
+  }, [isSDKLoaded]);
+
   return (
-    <div className="container mx-auto px-4 py-8">
+   <div className="container mx-auto px-4 py-8">
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2 font-headline">
           Welcome to Warpcast Arcade
@@ -19,6 +33,6 @@ export default function Home() {
           <GameCard key={game.id} game={game} />
         ))}
       </div>
-    </div>
+     </div>
   );
 }
