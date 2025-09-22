@@ -127,6 +127,13 @@ MIT License — free to use, fork, and remix with attribution.
 
 ---
 
+
+## 📄 License
+
+MIT License — free to use, fork, and remix with attribution.
+
+---
+
 ## 💬 Final Notes
 
 Warpcast Arcade is for the culture — let’s build the most fun, decentralized arcade on the internet 🕹️✨
