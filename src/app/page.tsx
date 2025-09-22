@@ -22,7 +22,7 @@ export default function Home() {
    <div className="container mx-auto px-4 py-8">
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2 font-headline">
-          Welcome to Warpcast Arcade
+          Welcome to Farcaster Arcade
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           Your portal to nostalgic fun. All games are free to play! Consider sponsoring the project to support development. Thank you.💖
