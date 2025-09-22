@@ -128,11 +128,6 @@ MIT License — free to use, fork, and remix with attribution.
 ---
 
 
-## 📄 License
-
-MIT License — free to use, fork, and remix with attribution.
-
----
 
 ## 💬 Final Notes
 
